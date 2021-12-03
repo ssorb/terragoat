@@ -6,6 +6,7 @@ resource "aws_security_group" "ssh_traffic" {
   name        = "ssh_traffic"
   description = "Allow SSH inbound traffic"
   ingress {
+    self = false
     description = "SSH"
     from_port   = 22
     to_port     = 22
@@ -22,7 +23,9 @@ resource "aws_security_group" "ssh_traffic" {
     git_repo             = "terragoat"
     yor_trace            = "1a401889-a498-4db5-bdaa-9c493a218059"
   }
+  vpc_id = "vpc-1539e673"
 }
+
 
 resource "aws_instance" "web_server_instance" {
   ami             = data.aws_ami.ubuntu.id
